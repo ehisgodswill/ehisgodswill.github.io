@@ -46,6 +46,8 @@ export default function Header() {
     width: 100%;
     padding: 6px 5%;
     gap: 7%;
+    position: fixed;
+    z-index: 1;
 }
 .logo{
     width: 170px;
@@ -60,14 +62,14 @@ export default function Header() {
 .contact{
     border:2px solid transparent;
     border-radius: 5px;
-    color: rgb(var(--foreground-rgb));
+    color: var(--background);
     background-color: var(--gold);
     padding: 5px;
     font-weight: 700;
 }
 .contact:hover{
     border:2px solid rgb(var(--foreground-rgb));
-    color: var(--background-start-rgb);
+    color: rgb(var(--foreground-rgb));
 }
 .navbar > ul{
     display: flex;

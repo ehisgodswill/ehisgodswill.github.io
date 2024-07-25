@@ -3,25 +3,178 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --gold: rgb(255, 200, 10);
-  --background: rgb(var(--background-end-rgb));
+  --color1rgb: 0, 0, 0;
+  --color2rgb: 255, 255, 255;
+  --gold: 255, 200, 10;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,400;0,800;1,400;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import "https://unpkg.com/open-props";
+
+body {
+  background-image: var(--noise-3), linear-gradient(0deg, #120720, #120720);
+  font-family: "Inter";
+  color: rgb(var(--color1rgb));
+  display: flex;
+  flex-direction: column;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --color1rgb: 255, 255, 255;
+    --color2rgb: 0, 0, 0;
+    --gold: 243, 207, 5;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-  min-height: 100vh;
+
+/*  */
+.header {
+  position: sticky;
+  z-index: 50;
+  top: 0px;
+  >nav {
+    --tw-bg-opacity: 0.1;
+    box-shadow: 0px 3px 10px -4px rgb(var(--color1rgb));
+    margin: 20px 10%;
+  }
+
+  @media screen and (max-width: 400px) {
+    >nav {
+      flex-direction: column;
+      div, ul{
+        justify-content: end;
+        width: 100%;
+      }
+      button{
+        position: absolute;
+        top: -50px;
+      }
+    }
+  }
+}
+
+[aria-expanded='true'] {
+  ~div {
+    display: flex;
+  }
+}
+
+
+
+#abt-img {
+  will-change: transform, opacity;
+}
+
+.k2d {
+  font-family: "k2d";
+}
+
+.glow {
+  text-shadow: rgba(86, 201, 255, 0.37) 0px 0px 39px;
+}
+
+.glow-el {
+  filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.5));
+}
+
+.glow-el-secondary {
+  filter: drop-shadow(0px 0px 15px rgba(var(--gold), 0.5));
+}
+
+.app-container {
   display: flex;
-  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.app-container[fade-content]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 30vh;
+  width: 100%;
+  background-image: linear-gradient(0deg, #120720, transparent);
+}
+
+.nav-border {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.nav-border a {
+  text-transform: uppercase;
+  transition: transform 150ms var(--ease-bounce-4);
+}
+
+.nav-border:has(a:hover) a:not(:hover):not(:first-child) {
+  transform: scale(0.95);
+}
+
+.nav-border button {
+  background-color: #242121;
+}
+
+.nav-border button:hover {
+  background-color: #444141;
+}
+
+.nav-border a:first-child,
+.nav-border button {
+  font-family: "K2D";
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+.circle {
+  -webkit-box-shadow: 0px 0px 100px 0px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: 0px 0px 100px 0px rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 0px 100px 0px rgba(255, 255, 255, 0.3),
+    0px 0px 100px 0px rgba(255, 255, 255, 0.9) inset;
+  background-image: var(--noise-3),
+    linear-gradient(135deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.21),
+      transparent 65%),
+    linear-gradient(135deg, #3cf3ff 15%, rgb(var(--gold)));
+  filter: var(--noise-filter-1);
+}
+
+.primary-grad {
+  background-image: var(--noise-3),
+    linear-gradient(0deg, rgb(60, 243, 255), #3cf3ff);
+}
+
+.second-grad {
+  background-image: var(--noise-3), linear-gradient(0deg, rgb(var(--gold)), rgb(var(--gold)));
+}
+
+.bg-secondary {
+  background-color: rgb(var(--gold));
+  border: 1px solid rgb(var(--gold));
+  &:hover{
+    color: rgb(var(--gold));
+    background-color: transparent;
+  }
+}
+
+.fill-secondary {
+  fill: rgb(var(--gold));
+}
+
+.third-grad {
+  background-image: var(--noise-3), linear-gradient(0deg, #ff8000, #ff8000);
+}
+
+.polka_dots {
+  background-image: radial-gradient(rgba(60, 243, 255, 0.1) 10%,
+      transparent 10%);
+  background-position: 8px 8px;
+  background-size: 16px 16px;
+}
+
+.cross-spin {
+  transform-origin: calc(0% + 0.9em) calc(0% + 0.9em);
 }

@@ -2,10 +2,60 @@
 import Image from "next/image";
 import { useRef } from 'react';
 import gsap from 'gsap';
+import _ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
 import Link from "next/link";
+import { FiX } from "react-icons/fi";
+import { FaArrowRightLong, FaPhp } from "react-icons/fa6";
+import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs, FaPython } from "react-icons/fa";
+import { SiTailwindcss, SiNextdotjs, SiMongodb, SiMysql, SiTypescript, SiExpress, SiDjango, SiAdobeaudition } from "react-icons/si";
+import { LuCircuitBoard } from "react-icons/lu";
+import { GiCircuitry, GiHeadphones, GiMechanicalArm, GiSolarSystem, GiSoundWaves } from "react-icons/gi";
+import { FcElectronics } from "react-icons/fc";
+import { LiaMixcloud } from "react-icons/lia";
 
-gsap.registerPlugin(useGSAP);
+
+gsap.registerPlugin(useGSAP, _ScrollTrigger);
+const skillCategories = [
+    {
+        title: "Web Developer",
+        skills: [
+            { name: "HTML", icon: <FaHtml5 className="text-orange-500" />, level: 5 },
+            { name: "CSS", icon: <FaCss3Alt className="text-blue-500" />, level: 4 },
+            { name: "JavaScript", icon: <FaJs className="text-yellow-400" />, level: 5 },
+            { name: "TypeScript", icon: <SiTypescript className="text-blue-400" />, level: 4 },
+            { name: "React", icon: <FaReact className="text-sky-400" />, level: 4 },
+            { name: "Next.js", icon: <SiNextdotjs className="text-white" />, level: 3 },
+            { name: "TailwindCSS", icon: <SiTailwindcss className="text-cyan-400" />, level: 4 },
+        ],
+    },
+    {
+        title: "Software Developer",
+        skills: [
+            { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, level: 4 },
+            { name: "PHP", icon: <FaPhp className="text-indigo-400" />, level: 4 },
+            { name: "Python", icon: <FaPython className="text-yellow-300" />, level: 3 },
+            { name: "MySQL", icon: <SiMysql className="text-blue-400" />, level: 4 },
+            { name: "MongoDB", icon: <SiMongodb className="text-green-400" />, level: 3 },
+        ],
+    },
+    {
+        title: "Audio Engineer",
+        skills: [
+            { name: "Mixing", icon: <LiaMixcloud className="text-teal-400" />, level: 5 },
+            { name: "Mastering", icon: <GiHeadphones className="text-teal-300" />, level: 4 },
+            { name: "Live Sound", icon: <GiSoundWaves className="text-teal-200" />, level: 4 },
+        ],
+    },
+    {
+        title: "Electrical Engineer",
+        skills: [
+            { name: "Circuit Design", icon: <FcElectronics className="text-green-400" />, level: 4 },
+            { name: "PCB Layout", icon: <GiCircuitry className="text-green-400" />, level: 3 },
+            { name: "Embedded Systems", icon: <GiMechanicalArm className="text-green-400" />, level: 3 },
+        ],
+    },
+];
 
 export default function Home() {
     const container = useRef(null);
@@ -13,7 +63,7 @@ export default function Home() {
         () => {
             const dotPulse = gsap.timeline({ repeat: -1 });
             const bubblePulse = gsap.timeline({ repeat: -1 });
-            const crossSpin = gsap.timeline({ repeat: -1 });
+            // const crossSpin = gsap.timeline({ repeat: -1 });
             const mainTimeline = gsap.timeline();
 
             // BG Dot Pulse
@@ -123,7 +173,7 @@ export default function Home() {
             });
 
             // Project Animations
-            crossSpin.to(".cross-spin", { rotate: 360, duration: 5, ease: "linear" });
+            // crossSpin.to(".cross-spin", { rotate: 360, duration: 5, ease: "linear" });
             mainTimeline.from(".project_items", {
                 scrollTrigger: {
                     trigger: ".app-container:nth-child(4)",
@@ -169,15 +219,17 @@ export default function Home() {
         { scope: container }
     );
 
-    return (<main className="" ref={container} >
+    return (<main className="bg-white text-black dark:bg-black dark:text-white transition-colors duration-300" ref={container} >
         <div className="app-container flex items-center" id="hero" fade-content='true'>
 
             <div className="container flex p-2 px-4 font-bold flex-col gap-4 tracking-wider max-w-7xl mx-auto">
                 <h1 className="sm:text-8xl text-6xl drop-shadow-xl ml-4 xl:ml-0 k2d glow">Godswill</h1>
                 <h1 className="sm:text-8xl text-6xl  drop-shadow-xl ml-4 xl:ml-0 k2d glow">Ehis</h1>
                 <div className="relative mt-8 ml-4 xl:ml-0">
-                    <p className="font-thin text-4xl  drop-shadow max-w-md mt-4 border-l pl-4 relative">full-stack web developer<br /></p>
-                    <div className="absolute w-1 h-1 bg-white rounded-full bottom-0 -left-0.5"></div>
+                    <p className="font-thin text-4xl drop-shadow max-w-md mt-4 border-l pl-4 relative dark:border-gray-600">
+                        full-stack web developer<br />
+                    </p>
+                    <div className="absolute w-1 h-1 bg-black dark:bg-white rounded-full bottom-0 -left-0.5"></div>
                 </div>
             </div>
             <div className="absolute right-4 z-10 hidden md:block">
@@ -201,12 +253,12 @@ export default function Home() {
         <div className="app-container" id="about">
             <div className="container mt-24 h-fit mx-8 md:mx-auto">
                 <h1 className="k2d font-bold mx-auto w-56 text-5xl tracking-wider about_heading">About</h1>
-                <h1 className="k2d font-bold flex relative items-center mx-auto w-56 text-5xl about_heading tracking-wider">Me <svg className="h-12 origin-left scale-x-150 scale-y-60 about_heading absolute right-0 fill-secondary glow-el-secondary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
-                </svg></h1>
-                <div className="relative">
-                    <div className="flex drop-shadow-xl rounded-full overflow-hidden aspect-square w-1/2 max-w-xl">
-                        {/* <Image id="abt-img" src="https://images.unsplash.com/photo-1610438250910-01cb769c1334?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDkwOTcxOTd8&ixlib=rb-4.0.3&q=1" alt="" width={100} height={100} /> */}
+                <h1 className="k2d font-bold flex relative items-center mx-auto w-56 text-5xl about_heading tracking-wider">Me
+                    <FaArrowRightLong className="h-12 origin-left scale-x-150 scale-y-60 about_heading absolute right-0 fill-secondary glow-el-secondary" />
+                </h1>
+                <div className="absolute">
+                    <div className="flex drop-shadow-xl rounded-full overflow-hidden aspect-square max-w-xl">
+                        <Image id="abt-img" src="https://images.unsplash.com/photo-1610438250910-01cb769c1334?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDkwOTcxOTd8&ixlib=rb-4.0.3&q=1" alt="" width={735} height={490} />
                     </div>
                     <div className="circle w-20 left-4 about_bounce bottom-4 aspect-square absolute rounded-full"></div>
                 </div>
@@ -220,119 +272,50 @@ export default function Home() {
                 <div className="absolute h-48 polka_dots bottom-16 right-24 -z-10 aspect-video"></div>
             </div>
         </div>
-        <div className="app-container overflow-hidden" id="skills" fade-content='true'>
-            <div className="container flex flex-col h-fit mx-auto ">
-                <h1 className="text-5xl text-center font-bold  k2d mx-auto mt-16 skill_items">Skills</h1>
-                <table>
-                    <thead>
+        <div className="app-container overflow-hidden" id="skills" fade-content="true">
+            <div className="container flex flex-col h-fit mx-auto py-16">
+                <h1 className="text-5xl text-center font-bold k2d mx-auto mb-12 skill_items">
+                    Skills
+                </h1>
 
-                        <tr className="flex gap-4 my-8 mx-auto skill_items text-xs sm:text-base">
-                            <th className="ml-4"><button className="border nav-border px-2 hover:bg-black rounded-full">Web developer</button></th>
-                            <th><button className="border nav-border px-2 hover:bg-black rounded-full">Audio Engineer</button></th>
-                            <th><button className="border nav-border px-2 hover:bg-black rounded-full">Electrical Engineer</button></th>
-                            <th className="mr-4"><button className="border nav-border px-2 hover:bg-black rounded-full">Software Developer</button></th>
-                        </tr></thead>
-                    <tbody className="grid grid-cols-2 max-w-5xl w-full space-x-8 mx-auto ">
-                        {/* <div className="flex justify-center flex-col skill_items gap-4">
-
-                            <div className="flex justify-center gap-4">
-                                <p>Skill 1</p>
-                                <ul className="flex gap-2 items-center">
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                </ul>
-                            </div>
-
-                            <div className="flex justify-center gap-4">
-                                <p>Skill 1</p>
-                                <ul className="flex gap-2 items-center">
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                </ul>
-                            </div>
-
-                            <div className="flex justify-center gap-4">
-                                <p>Skill 1</p>
-                                <ul className="flex gap-2 items-center">
-                                    <li className="w-4 h-4 second-grad rounded-full">hh</li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                </ul>
-                            </div>
-
-                            <div className="flex justify-center gap-4">
-                                <p>Skill 1</p>
-                                <ul className="flex gap-2 items-center">
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                </ul>
+                <div className="grid md:grid-cols-2 gap-8">
+                    {skillCategories.map((category, idx) => (
+                        <div
+                            key={idx}
+                            className="bg-gray-900/60 rounded-2xl shadow-lg p-6 backdrop-blur-md border border-gray-800"
+                        >
+                            <h2 className="text-xl font-semibold mb-6 text-secondary">
+                                {category.title}
+                            </h2>
+                            <div className="space-y-4">
+                                {category.skills.map((skill, i) => (
+                                    <div key={i} className="flex items-center justify-between">
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-2xl">{skill.icon}</span>
+                                            <span>{skill.name}</span>
+                                        </div>
+                                        <ul className="flex gap-2 items-center">
+                                            {[...Array(5)].map((_, j) => (
+                                                <li
+                                                    key={j}
+                                                    className={`w-3 h-3 rounded-full ${j < skill.level
+                                                            ? "second-grad"
+                                                            : "bg-gray-600 opacity-40"
+                                                        }`}
+                                                ></li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
                             </div>
                         </div>
+                    ))}
+                </div>
 
-                        <div className="flex text-sm sm:text-base justify-center flex-col skill_items gap-4">
-
-                            <div className="flex justify-center gap-4">
-                                <p>Skill 1</p>
-                                <ul className="flex gap-2 items-center">
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                </ul>
-                            </div>
-
-                            <div className="flex justify-center gap-4">
-                                <p>Skill 1</p>
-                                <ul className="flex gap-2 items-center">
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                </ul>
-                            </div>
-
-                            <div className="flex justify-center gap-4">
-                                <p>Skill 1</p>
-                                <ul className="flex gap-2 items-center">
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                </ul>
-                            </div>
-
-                            <div className="flex justify-center gap-4">
-                                <p>Skill 1</p>
-                                <ul className="flex gap-2 items-center">
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                    <li className="w-4 h-4 second-grad opacity-40 rounded-full"></li>
-                                </ul>
-                            </div>
-                        </div> */}
-                    </tbody>
-
-                </table>
+                {/* Decorations */}
                 <div className="absolute h-48 polka_dots left-1/8 top-1/4 -z-10 rotate-90 aspect-video"></div>
                 <div className="absolute h-64 polka_dots right-48 opacity-50 bottom-1/4 -z-10 aspect-video"></div>
                 <div className="circle h-1/3 skill_circle aspect-square rounded-full absolute right-8 top-2/4 -z-10"></div>
-
             </div>
         </div>
         <div className="app-container overflow-hidden" id="projects">
@@ -345,51 +328,51 @@ export default function Home() {
                     </div>
 
                     <div className="flex items-center gap-4 project_items">
-                        <div className="aspect-video h-48 bg-slate-600 rounded-xl">
+                        <div className="aspect-video h-48 bg-slate-600 rounded-xl flex items-center justify-center">
+                            <span className="text-5xl text-white"><FiX /></span>
                         </div>
                         <div>
-                            <h1 className="k2d font-bold tracking-wider text-xl glow">Project Title</h1>
-                            <p>2019-2020</p>
+                            <h1 className="k2d font-bold tracking-wider text-xl glow">Portfolio Website</h1>
+                            <p>2023-2024</p>
+                            <p className="mt-2 text-sm">A personal portfolio built with Next.js, GSAP, and Tailwind CSS.</p>
                         </div>
                     </div>
 
                     <div className="flex items-center gap-4 project_items">
                         <div className="w-full">
-                            <h1 className="ml-auto w-fit k2d font-bold tracking-wider text-xl glow">Project Title</h1>
-                            <p className="ml-auto w-fit">2019-2020</p>
+                            <h1 className="ml-auto w-fit k2d font-bold tracking-wider text-xl glow">E-commerce Platform</h1>
+                            <p className="ml-auto w-fit">2022-2023</p>
+                            <p className="ml-auto w-fit mt-2 text-sm">A full-stack e-commerce web application with payment integration.</p>
                         </div>
-                        <div className="aspect-square h-48 bg-slate-600 rounded-xl"></div>
+                        <div className="aspect-square h-48 bg-slate-600 rounded-xl flex items-center justify-center">
+                            <span className="text-5xl text-white"><FiX /></span>
+                        </div>
                     </div>
 
                     <div className="flex pl-6 items-center gap-4 project_items">
-                        <div className="aspect-video h-48 bg-slate-600 rounded-xl">
+                        <div className="aspect-video h-48 bg-slate-600 rounded-xl flex items-center justify-center">
+                            <span className="text-5xl text-white"><FiX /></span>
                         </div>
                         <div>
-                            <h1 className="k2d font-bold tracking-wider text-xl glow">Project Title</h1>
-                            <p>2019-2020</p>
+                            <h1 className="k2d font-bold tracking-wider text-xl glow">Blog Platform</h1>
+                            <p>2021-2022</p>
+                            <p className="mt-2 text-sm">A modern blog platform with markdown support and user authentication.</p>
+                        </div>
+                    </div>
+
+                    <div className="flex items-center gap-4 project_items">
+                        <div className="aspect-video h-48 bg-slate-600 rounded-xl flex items-center justify-center">
+                            <span className="text-5xl text-white"><FiX /></span>
+                        </div>
+                        <div>
+                            <h1 className="k2d font-bold tracking-wider text-xl glow">Audio Visualizer</h1>
+                            <p>2020-2021</p>
+                            <p className="mt-2 text-sm">A web-based audio visualizer using Web Audio API and Canvas.</p>
                         </div>
                     </div>
 
                 </div>
-                {/* 
-                    <svg className="hidden md:block cross-spin glow-el -z-10 project_items absolute -right-24 top-1/3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-
-                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                            <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#ffffff">
-                                <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup">
-                                </path>
-                            </g>
-                        </g>
-                    </svg>
-                    <svg className="hidden sm:block cross-spin glow-el -z-10 project_items absolute left-1/8 top-2/3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-
-                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                            <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#ffffff">
-                                <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup">
-                                </path>
-                            </g>
-                        </g>
-                    </svg> */}
+                {/* Removed raw SVGs and replaced with React Icons */}
                 <div className="absolute h-48 polka_dots left-1/8 top-1/4 -z-10 rotate-90 aspect-video"></div>
                 <div className="absolute h-64 polka_dots right-48 opacity-50 bottom-1/4 -z-10 aspect-video"></div>
             </div>

@@ -17,6 +17,7 @@ import portfolio from "@/app/images/portfolio.png";
 import bloomzon from "@/app/images/bloomzon.png";
 import cmanager from "@/app/images/cmanager.png";
 import senda from "@/app/images/senda.png";
+import ContactForm from "./components/ContactForm";
 
 
 gsap.registerPlugin(useGSAP, _ScrollTrigger);
@@ -414,32 +415,7 @@ export default function Home() {
                 </div>
             </div>
             {/* Contact Section */}
-            <div className="app-container relative" id="contact">
-                <div className="container mx-auto mt-16">
-                    <h1 className="k2d font-bold w-fit mx-auto text-5xl tracking-wider contact_load">Contact Me</h1>
-                    <div className="flex flex-col mt-8 gap-8 max-w-xl mx-4 md:mx-auto">
-                        <div className="contact_load">
-                            <p className="ml-4 mb-2">Name</p>
-                            <input className="px-4 py-2 w-full rounded-3xl bg-orange-500 text-white bg-opacity-10" type="text" name="name" placeholder="Enter your Name" id="" />
-                        </div>
-                        <div className="contact_load">
-                            <p className="ml-4 mb-2">Email address</p>
-                            <input className="px-4 py-2 w-full  rounded-3xl bg-orange-500 text-white bg-opacity-10" type="email" name="email" placeholder="Enter your Email address" id="" />
-                        </div>
-                        <div className="contact_load">
-                            <p className="ml-4 mb-2">Message</p>
-                            <textarea className="px-4 py-2 w-full h-36 rounded-3xl bg-orange-500 text-white bg-opacity-10" name="email" placeholder="Enter your Message here" id=""></textarea>
-                        </div>
-                        <button className="bg-secondary contact_load mx-auto rounded-xl py-2 px-4 w-3/5">Send Message</button>
-                    </div>
-                </div>
-
-                <div className="flex justify-center text-xs items-center absolute -bottom-10 opacity-15 border-t w-full h-16">
-                    {/* <p>Design by Rohan Patil: https://www.figma.com/community/file/1335196687351078757/my-personal-portfolio</p> */}
-                </div>
-                <div className="absolute h-1/3 polka_dots -z-10 -right-16 bottom-1/4 -z-5 rotate-90 aspect-video"></div>
-                <div className="absolute h-1/3 polka_dots -z-10 -left-8 top-16 -z-5 hidden md:block aspect-video"></div>
-            </div>
+            <ContactForm />
 
         </main>
     );
